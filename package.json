@@ -1,0 +1,22 @@
+{
+  "name": "lemoncake",
+  "version": "1.0.0",
+  "description": "A birthday discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zitronenclara/Lemoncake.git"
+  },
+  "author": "Clara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zitronenclara/Lemoncake/issues"
+  },
+  "homepage": "https://github.com/Zitronenclara/Lemoncake#readme",
+  "dependencies": {
+    "discord.js": "^13.3.1"
+  }
+}
