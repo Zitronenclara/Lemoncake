@@ -1,0 +1,6 @@
+{
+    "token": "BOT TOKEN",
+    "appID": "BOT APPLICATION ID",
+    "DBurl": "MONGODB DATABASE URL",
+    "ownerID": "BOT OWNER USER ID"
+}

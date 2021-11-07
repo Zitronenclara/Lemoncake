@@ -4,7 +4,7 @@
   "description": "A birthday discord bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Zitronenclara/Lemoncake#readme",
   "dependencies": {
-    "discord.js": "^13.3.1"
+    "axios": "^0.24.0",
+    "discord.js": "^13.3.1",
+    "mongoose": "^6.0.12"
   }
 }
