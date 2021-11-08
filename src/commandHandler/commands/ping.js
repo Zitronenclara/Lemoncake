@@ -1,6 +1,7 @@
 // IMPORTANT IMPORTS
 const Discord = require('discord.js')
 const CommandArgs = require('./../../classes/CommandArgs.js')
+const embedGen = require('./../../utils/embedGenerator.js')
 
 // command options
 const options = []
@@ -10,6 +11,7 @@ module.exports = {
 	description: 'Ping!',
     type: 1,
 	options: options,
+    takesTime: false,
     /**
      * Returns the client latency
      *
@@ -18,6 +20,6 @@ module.exports = {
      * @since 1.0.0
      */
 	async execute(data) {
-		await data.interaction.reply({ content: 'Pong!', ephemeral: true });
+        embedGen.custom("📡 PONG 📡", "0xFF964F", "Bot Latency: **`"+data.client.ws.ping+"ms`**", data.interaction, true)
 	}
 };

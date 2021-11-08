@@ -22,6 +22,7 @@ module.exports = {
         
         const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
         try {
+            if (command.takesTime) {await interaction.deferReply()}
             command.execute(new CommandArgs(client, author, interaction.channel, interaction.options, interaction))
         } catch (error) {
             console.error(error);
