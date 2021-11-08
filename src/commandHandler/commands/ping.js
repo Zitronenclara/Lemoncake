@@ -13,14 +13,13 @@ module.exports = {
 	options: options,
     takesTime: false,
     /**
-     * Returns the client latency
+     * ping
      *
      * @author: Clara
      * @param {CommandArgs} data The command data
      * @since 1.0.0
      */
 	async execute(data) {
-        data.botUser.moduleData.birthdayData.day += 1
         embedGen.custom("📡 PONG 📡", "0xFF964F", "Bot Latency: **`"+data.client.ws.ping+"ms`**", data.interaction, true)
 	}
 };
