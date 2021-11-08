@@ -20,7 +20,7 @@ module.exports = {
      * @since 1.0.0
      */
 	async execute(data) {
-        console.log(data.botUser)
+        data.botUser.moduleData.birthdayData.day += 1
         embedGen.custom("📡 PONG 📡", "0xFF964F", "Bot Latency: **`"+data.client.ws.ping+"ms`**", data.interaction, true)
 	}
 };

@@ -23,7 +23,8 @@ module.exports = {
         const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
         try {
             if (command.takesTime) {await interaction.deferReply()}
-            command.execute(new CommandArgs(client, author, botUser, interaction.channel, interaction.options, interaction))
+            await command.execute(new CommandArgs(client, author, botUser, interaction.channel, interaction.options, interaction))
+            botUser.save().catch(err => console.log(err))
         } catch (error) {
             console.error(error);
             channel.send("An error occured while trying to execute that command.");
