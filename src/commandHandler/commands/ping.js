@@ -1,5 +1,6 @@
 // IMPORTANT IMPORTS
 const Discord = require('discord.js')
+const CommandArgs = require('./../../classes/CommandArgs.js')
 
 // command options
 const options = []
@@ -13,10 +14,10 @@ module.exports = {
      * Returns the client latency
      *
      * @author: Clara
-     * @param {Object} data The command data
+     * @param {CommandArgs} data The command data
      * @since 1.0.0
      */
 	async execute(data) {
-		console.log("Test")
+		await data.interaction.reply({ content: 'Pong!', ephemeral: true });
 	}
 };
