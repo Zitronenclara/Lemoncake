@@ -1,6 +1,7 @@
 // IMPORTANT IMPORTS
 const Discord = require('discord.js')
 const CommandArgs = require('./../../classes/CommandArgs.js')
+const DB = require('./../../database/db.js')
 
 module.exports = {
 	name: 'interactionCreate',
@@ -17,13 +18,12 @@ module.exports = {
         if (!interaction.isCommand()) return;
         const commandName = interaction.commandName;
         const author = interaction.member.user;
-
-        //let authorData = await botUser.load(client, author.id)
+        const botUser = await DB.loadBotUser(author.id)
         
         const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
         try {
             if (command.takesTime) {await interaction.deferReply()}
-            command.execute(new CommandArgs(client, author, interaction.channel, interaction.options, interaction))
+            command.execute(new CommandArgs(client, author, botUser, interaction.channel, interaction.options, interaction))
         } catch (error) {
             console.error(error);
             channel.send("An error occured while trying to execute that command.");

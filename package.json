@@ -19,6 +19,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "discord.js": "^13.3.1",
-    "mongoose": "^6.0.12"
+    "mongoose": "^6.0.12",
+    "object-hash": "^2.2.0"
   }
 }
