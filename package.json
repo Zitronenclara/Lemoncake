@@ -4,7 +4,8 @@
   "description": "A birthday discord bot",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "docker build -t clara/momobot ."
   },
   "repository": {
     "type": "git",
