@@ -19,8 +19,9 @@ module.exports = class CommandArgs {
      * @param {Discord.Channel} channel The channel the command was invoked in
      * @param {Discord.CommandInteractionOptionResolver} options The command options
      * @param {Discord.Interaction} interaction The command interaction
+     * @param {Object} botUserTarget All bot-specific stored data about a mentioned user
      */
-    constructor(client, author, botUser, channel, options, interaction){
+    constructor(client, author, botUser, channel, options, interaction, botUserTarget){
         /**
          * client
          * 
@@ -74,5 +75,14 @@ module.exports = class CommandArgs {
          * @public
          */
          this.interaction = interaction
+
+         /**
+         * botUserTarget
+         * 
+         * @since 1.0.0
+         * @type {Object}
+         * @public
+         */
+          this.botUserTarget = botUserTarget
     }
 }

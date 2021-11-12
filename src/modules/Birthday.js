@@ -1,6 +1,6 @@
 const config = {
     version: 1,
-    minYear: 1900,
+    minYear: 1904,
     maxYearGap: 6,
     monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     monthDays: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
@@ -32,7 +32,7 @@ class birthdayData {
         this.year = 0
         this.leap = false
         this.set = false
-        this.private = true
+        this.private = false
     }
 
     /**
@@ -96,8 +96,29 @@ class birthdayData {
         }
         result += " "+config.monthNames[this.month - 1]
         
-        if (this.year !== 0) result+=" "+this.year
+        if (this.year !== 0 && this.private === false) result+=" "+this.year
         return result
+    }
+
+    /**
+     * Returns the age from the set birthdate
+     *
+     * @since 1.0.0
+     * @returns {Number} age
+     */
+    age(){
+        let dif = new Date() - this.getDate()
+        return Math.abs(new Date (dif).getUTCFullYear() - 1970)
+    }
+
+    /**
+     * Returns the birthdate as a date object
+     *
+     * @since 1.0.0
+     * @returns {Date} birthdate
+     */
+    getDate(){
+        return new Date(this.year, this.month-1, this.day)
     }
 }
 
@@ -114,6 +135,9 @@ function validateDate(day, month, year = config.minYear){
     let maxYear = new Date().getFullYear() - config.maxYearGap
     let leap = (day == 29 && month == 2);
     let valid = (year >= config.minYear) && (year <= maxYear) && (day <= config.monthDays[month - 1])
+    if (leap && !(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))){
+        valid = false
+    }
     return {valid: valid, leap: leap}
 }
 

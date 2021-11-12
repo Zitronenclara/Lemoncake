@@ -31,6 +31,8 @@ module.exports = {
     type: 1,
 	options: options,
     takesTime: false,
+    usesDB: true,
+    loadMentionedUser: {load: false, index: ""},
     /**
      * setBirthday
      *

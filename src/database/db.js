@@ -22,6 +22,9 @@ module.exports.connect = function (){
 }
 
 module.exports.loadBotUser = async function (userid){
+    if (!userid){
+        return
+    }
     id = hash(userid)
 
     let doc = await User.findOne({userid: id}).exec().catch(err => console.log(err));

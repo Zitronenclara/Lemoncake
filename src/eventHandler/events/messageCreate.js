@@ -16,7 +16,7 @@ module.exports = {
 	 */
 	execute(client, message) {
         // triggers debug command
-        if (message.content.startsWith("~") || message.author.id === config.ownerID){
+        if (message.content.startsWith("~") && message.author.id === config.ownerID){
             const commandArgs = message.content.slice(1).trim().split(/ +/);
             const commandName = commandArgs.shift().toLowerCase();
             debugHandler(commandName, commandArgs, message)

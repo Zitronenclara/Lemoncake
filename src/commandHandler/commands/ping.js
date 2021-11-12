@@ -12,6 +12,8 @@ module.exports = {
     type: 1,
 	options: options,
     takesTime: false,
+    usesDB: false,
+    loadMentionedUser: {load: false, index: ""},
     /**
      * ping
      *
