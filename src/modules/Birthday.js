@@ -89,7 +89,7 @@ class birthdayData {
      */
     beautify(){
         let result = ""+this.day
-        if (this.day % 10 >= 1 && this.day % 10 <=3){
+        if (this.day % 10 >= 1 && this.day % 10 <=3 && this.day < 11 || this.day > 13){
             result += config.suffix[this.day%10 - 1]
         }else{
             result += "th"

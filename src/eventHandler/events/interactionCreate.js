@@ -15,20 +15,35 @@ module.exports = {
 	 * @since 1.0.0
 	 */
 	async execute(client, interaction) {
-        if (!interaction.isCommand()) return;
-        const commandName = interaction.commandName;
-        const author = interaction.member.user;
-        let botUser;
-        let botUserTarget;
-        const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
-        try {
-            if (command.takesTime) {await interaction.deferReply()};
-            if (command.usesDB) {botUser = await DB.loadBotUser(author.id)};
-            if (command.loadMentionedUser.load) {botUserTarget = await DB.loadBotUser(interaction.options.getUser(command.loadMentionedUser.index)?.id)};
-            command.execute(new CommandArgs(client, author, botUser, interaction.channel, interaction.options, interaction, botUserTarget))
-        } catch (error) {
-            console.error(error);
-            channel.send("An error occured while trying to execute that command.");
-        }
+        if (interaction.isCommand() || interaction.isSelectMenu()){
+            let commandName = interaction.commandName;
+            if (!commandName) commandName = interaction.customId;
+            const author = interaction.member.user;
+            let botUser;
+            let botUserTarget;
+            const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
+            if (interaction.isCommand()){
+                try {
+                    if (command.takesTime) {await interaction.deferReply({ephemeral: true})};
+                    if (command.usesDB) {botUser = await DB.loadBotUser(author.id)};
+                    if (command.loadMentionedUser.load) {botUserTarget = await DB.loadBotUser(interaction.options.getUser(command.loadMentionedUser.index)?.id)};
+                    command.execute(new CommandArgs(client, author, botUser, interaction.channel, interaction.options, interaction, botUserTarget))
+                } catch (error) {
+                    console.error(error);
+                    channel.send("An error occured while trying to execute that command.");
+                }
+            }else{
+                try {
+                    if (command.takesTimeUpdate) {await interaction.deferReply({ephemeral: true})};
+                    if (command.usesDB) {botUser = await DB.loadBotUser(author.id)};
+                    command.update(new CommandArgs(client, author, botUser, interaction.channel, interaction.options, interaction, botUserTarget))
+                } catch (error) {
+                    console.error(error);
+                    channel.send("An error occured while trying to execute that selection.");
+                }
+            }
+            
+        };
 	},
 };

@@ -12,10 +12,11 @@ module.exports = {
     type: 1,
 	options: options,
     takesTime: false,
+    takesTimeUpdate: false,
     usesDB: false,
     loadMentionedUser: {load: false, index: ""},
     /**
-     * ping
+     * ping - command
      *
      * @author: Clara
      * @param {CommandArgs} data The command data

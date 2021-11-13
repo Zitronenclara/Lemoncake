@@ -19,10 +19,11 @@ module.exports = {
     type: 1,
 	options: options,
     takesTime: false,
+    takesTimeUpdate: false,
     usesDB: true,
     loadMentionedUser: {load: true, index: "user"},
     /**
-     * birthday
+     * birthday - command
      *
      * @author: Clara
      * @param {CommandArgs} data The command data

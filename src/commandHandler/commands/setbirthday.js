@@ -31,10 +31,11 @@ module.exports = {
     type: 1,
 	options: options,
     takesTime: false,
+    takesTimeUpdate: false,
     usesDB: true,
     loadMentionedUser: {load: false, index: ""},
     /**
-     * setBirthday
+     * setBirthday - command
      *
      * @author: Clara
      * @param {CommandArgs} data The command data
